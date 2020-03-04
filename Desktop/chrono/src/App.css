@@ -1,5 +1,18 @@
-.App {
+#root {
   text-align: center;
+    font-size: large;
+  display: inline;
+  
+}
+.bbtn{
+  display: flex;
+  justify-content: space-around;
+  padding: 0px 700px 0px 700px;
+}
+.chron{
+  font-size: large;
+  display: inline;
+ 
 }
 
 .App-logo {

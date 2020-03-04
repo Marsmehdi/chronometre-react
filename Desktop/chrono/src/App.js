@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import logo from './logo.svg';
+
+
 import './App.css';
 
 class Timer extends React.Component {
@@ -10,43 +10,57 @@ class Timer extends React.Component {
       second:0,
       munit:0,
       hours:0,
+      stop : true ,
+      nombtn : "Start",
         }
       
-      setInterval (
-        ()=>{
-          this.setState({
-            munit:Math.floor(this.state.second/60)
-          })
-        },1000
-      )
-      setInterval (
-        ()=>{
-          this.setState({
-            hours:Math.floor(this.state.munit/60)
-          })
-        },1000
-      )
+     
+     
     
     
     
     }
     handleStartClick = () =>{
       
-      this.incriment = setInterval (
+      if(this.state.stop===true)
+      {this.incriment = setInterval (
         ()=>{
           this.setState({
-            second:this.state.second +1
+            stop: false,
+            nombtn : "Stop" ,
+          })
+          this.setState({
+            second:this.state.second +1,
+            munit:Math.floor(this.state.second/60),
+            hours:Math.floor(this.state.munit/60)
           })
         },1000
-      )
+      )}
+      else{clearInterval(this.incriment)
+        this.setState({
+          stop: true,
+          nombtn : "Start" ,
+        })
+      }
     }
     handleStopClick = () =>{
       clearInterval(this.incriment)
+      this.setState({
+        second: 0,
+        munit: 0,
+        hours : 0,
+        stop:true,
+        nombtn : "Start" ,
+      })
     }
+
+
+
+
       render(){
-      return(<div><div className ="chron"><h1>{(('0'+ this.state.hours % 60).slice(-2))}:{(('0'+ this.state.munit % 60).slice(-2))}:{ (('0'+ this.state.second % 60).slice(-2))}</h1>
-        <button type='button' onClick={this.handleStartClick} >Start</button>
-        <button  type='button' onClick={this.handleStopClick} >stop</button>
+      return(<div className ="chron"><div ><h1>{(('0'+ this.state.hours % 60).slice(-2))}:{(('0'+ this.state.munit % 60).slice(-2))}:{ (('0'+ this.state.second % 60).slice(-2))}</h1>
+        <div className="bbtn"><button type='button' onClick={this.handleStartClick} >{this.state.nombtn}</button>
+        <button  type='button' onClick={this.handleStopClick} >Reset</button></div>
         </div></div>
         
 
