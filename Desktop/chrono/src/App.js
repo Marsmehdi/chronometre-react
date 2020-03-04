@@ -13,11 +13,6 @@ class Timer extends React.Component {
       stop : true ,
       nombtn : "Start",
         }
-      
-     
-     
-    
-    
     
     }
     handleStartClick = () =>{
@@ -53,10 +48,6 @@ class Timer extends React.Component {
         nombtn : "Start" ,
       })
     }
-
-
-
-
       render(){
       return(<div className ="chron"><div ><h1>{(('0'+ this.state.hours % 60).slice(-2))}:{(('0'+ this.state.munit % 60).slice(-2))}:{ (('0'+ this.state.second % 60).slice(-2))}</h1>
         <div className="bbtn"><button type='button' onClick={this.handleStartClick} >{this.state.nombtn}</button>
